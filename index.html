@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Live Ponte</title>
-<style>
-body { display:flex; justify-content:center; align-items:center; height:100vh; background:#000; margin:0; }
-video { width:90%; height:auto; }
-</style>
+    <meta charset="UTF-8">
+    <title>Live с моста</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #000; margin: 0; }
+        video { width: 90%; max-width: 800px; height: auto; }
+    </style>
 </head>
 <body>
-<video controls autoplay>
-  <source src="https://video04.logicahost.com.br/portovelhomamore/fozpontedaamizadesentidoparaguai.stream/playlist.m3u8" type="application/x-mpegURL">
-</video>
+    <video id="liveVideo" controls></video>
+
+    <!-- HLS.js -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        const video = document.getElementById('liveVideo');
+        const videoSrc = 'https://video04.logicahost.com.br/portovelhomamore/fozpontedaamizadesentidoparaguai.stream/playlist.m3u8';
+
+        if(Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoSrc);
+            hls.attachMedia(video);
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = videoSrc;
+        }
+    </script>
 </body>
 </html>
