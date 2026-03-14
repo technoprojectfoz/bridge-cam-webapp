@@ -2,28 +2,53 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atacadão Foz</title>
     <style>
+        /* Общие настройки страницы */
         body {
+            margin: 0;
+            padding: 0;
+            background: #111;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: #111;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #fff;
         }
-        video {
-            width: 90%;
+
+        /* Контейнер видео */
+        .video-container {
+            width: 100%;
             max-width: 800px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            background-color: black;
+            object-fit: contain;
+        }
+
+        /* Адаптивность: при маленьких экранах уменьшаем padding */
+        @media (max-width: 480px) {
+            .video-container {
+                padding: 5px;
+            }
         }
     </style>
 </head>
 <body>
-    <video controls autoplay>
-        <source src="https://video02.logicahost.com.br/portaldacidade/fozsentidopontedaamizade01.stream/playlist.m3u8" type="application/x-mpegURL">
-        Ваш браузер не поддерживает видео.
-    </video>
+    <div class="video-container">
+        <video controls autoplay playsinline>
+            <source src="https://video02.logicahost.com.br/portaldacidade/fozsentidopontedaamizade01.stream/playlist.m3u8" type="application/x-mpegURL">
+            Ваш браузер не поддерживает видео.
+        </video>
+    </div>
 </body>
 </html>
